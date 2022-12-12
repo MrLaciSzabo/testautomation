@@ -1,8 +1,9 @@
-Feature: oldal bejárása
+Feature: webshop készítése a Tesconak
 
 # előfeltétel chrome.exe projekthez adása
 @ oldal megnyitása
-Scenario: a Tesco weboldalának megnyitása
+Scenario1: a Tesco weboldalának megnyitása
+Rule: a Tesconak legyen egy elérhető webshopja
 Given megnyitom a Chrome böngészőt
 When kattintom a chrome ikont
 Then a Chrome megnyílik
@@ -10,18 +11,26 @@ Given megnyitom a weboldalt
 When a https://bevasarlas.tesco.hu/groceries/en-GB/ linket beillesztem
 And entert nyomok
 Then a Tesco weboldala megnyílik
+Example: meg tudjam nyitni a weboldalt
+
+Feature: cookie-k készítése
 
 # előfeltétel törölt cookiek
 # előfeltétel új session
 @ cookiek elfogadása
-Scenario: a cooie menüszalagján az Accept all cookies gombra kattintok
+Scenario2: a cooie menüszalagján az Accept all cookies gombra kattintok
+Rule: a honlap használjon cookiekat
 Given megjelnik a cookie menüszalagja
 When kattintom az Accept all cookies gombot
 Then a menüszalag eltűnik
+Example: a cookiekat lehessen elfogadni vagy elutasítani
+
+Feature: beléptető form
 
 # előfeltétel regisztrált felhasználói fiók
 @ belépés
-Scenario: a menüszalagon a Sign in gombra kattintok és belépek a regisztrált felhasználóval
+Scenario3: a menüszalagon a Sign in gombra kattintok és belépek a regisztrált felhasználóval
+Rule: a regisztrált felhasználó tudjon belépni
 Given megjelenik a menüszalag
 When a Sign in gombra kattintok
 Then megjelenik a https://bevasarlas.tesco.hu/groceries/en-GB/login?from=https%3A%2F%2Fbevasarlas.tesco.hu%2Fgroceries%2Fen-GB%2F  oldal
@@ -29,9 +38,14 @@ When kitöltöm az Email address mezőt helyes adattal
 And kitöltöm az Email Password mezőt helyes adattal
 And megnyomom a Sign in nyomógombot
 Then megjelenik a https://bevasarlas.tesco.hu/groceries/en-GB/ oldal
+Example: helyes adattokkal kiltöltés esetén a Sign in gombra kattintva belép a felhasználó
+
+Feature: oldal bejárható legyen gombokkal és linkekkel
 
 # tesztstratégia bal fent kezdve jobbra majd lefelé haladva
-Scenario: a menüszalagon minden link és gomb megnyomása kivéve a Sign out gomb
+@ menüszalag kattintása
+Scenario3: a menüszalagon minden link és gomb megnyomása kivéve a Sign out gomb
+Rule: a honlapon található linkek és gombok a feliratnak megfelelő oldalra irányítson
 Given megjelenik a /groceries oldal
 When megnyomom a Hello Laci gombot
 Then megjelenik a /groceries oldal
@@ -53,8 +67,11 @@ When megnyomom a Feedback gombot
 Then új ablakban megnyílik a https://secure.opinionlab.com/ccc01/comment_card_d.asp oldal
 When megnyomom a beár gombot
 Then a comment card oldal bezáródik
+Example: linkek, gombok átirányításai működjenek
 
-Scenario: Groceries oldal bejárása
+@ Groceries oldal bejárása
+Scenario4: Groceries oldal bejárása
+Rule: linkre kattintva jelenjen meg a link almenüje
 Given megjelenik a /groceries oldal
 When megnyomom a Groceries gombot
 Then megjelenik a  /groceries/en-GB/favorites oldal
@@ -94,35 +111,55 @@ When megnyomom a Home & Hobby linket
 Then megjelennek az All Home & Hobby termékek
 When megnyomom a Clothing linket
 Then megjelennek az All Clothing termékek
+Example: minden linknek legyen almenüje, mejből a termékek elérhetőek
 
-Scenario: My Favourites oldal bejárása
+@ My Favourites oldal
+Scenario5: My Favourites oldal bejárása
+Rule: a My Favourites gomb a /favourites oldalra irányítson
 Given megjelenik a /groceries oldal
 When megnyomom a My Favourites gombot
 Then megjelnik a /favorites oldal
+Example: a My Favourites gombot megnyomva átirányulok a My Favourites oldalra
 
-Scenario: Promotions oldal bejárása
+@ Promotions oldal
+Scenario6: Promotions oldal bejárása
+Rule: a Promotions oldal a /promotions oldalra irányítson
 Given megjelenik a /favorites oldal
 When megnyomom a Promotions gombot
 Then megjelenik a /promotions oldal
+Example: a Promotions gombot megnyomva átirányulok a Promotions oldalra
 
-Scenario: Online Club oldal bejárása
+@ Online Club oldal
+Scenario7: Online Club oldal bejárása
+Rule: az Online Club gomb a /online-club oldalra irányítson
 Given megjelenik a /promotions oldal
 When megnyomom az Online Club gombot
 Then új ablakban megjelenik a /online-club oldal
 When megnyomom a bezár gombot a lapon
 Then megjelenik a /promotions oldal
+Example: az Online Club gombra kattintva átirányulok az Online Club oldalra
 
-Scenario: Inspirations oldal bejárása
+@ Inspirations oldal
+Scenario8: Inspirations oldal bejárása
+Rule: az Inspirations gomb a /zone/inspiraciok oldalra irányítson
 Given megjelenik a /promotions oldal
 When megnyomom az Inspirations gombot
 Then megjelenik a /zone/inspiraciok/ oldal
+Example: az Inspirációk gombra kattintva átirányulok az Inspirációk oldalra
 
-Scenario: a Christmas oldal megnyitása
+@ Christmas oldal
+Scenario9: a Christmas oldal megnyitása
+Rule: a Christmas oldal a /zone/inspiraciok oldalra irányítson
 Given megjelenik a /zone/inspiraciok/ oldal
 When megnyomom a Christmas gombot
 Then megjelnik a /zone/Karacsony oldal
+Example: a Christmas gombra kattintva átirányulok a Christmaas oldalra
 
-Scenario: termék kosárba helyezése
+Feature: kosár funkció a vásárláshoz
+
+@ termék a kosárba
+Scenario10: termék kosárba helyezése
+Rule: a kosárhoz lehessen hozzáadni terméket
 Given megjelnik a /zone/Karacsony oldal
 When megnyomom a Buy Christmas pastry gombot
 Then megjelenik a /buy-lists/G00004119 oldal
@@ -138,13 +175,19 @@ When megnyomom a linket a Kata Punch Flavoured Cake terméken
 Then megnyílik a /products/2004120032275 oldal
 When megnyomom az Add gombot a Kata Punch Flavoured Cake terméken
 Then Then a termék hozzáadódik a kosárhoz
+Example: tudok hozzáadni a kosárhoz
 
-Scenario a kosár tartalmának ellenőrzése
+@ kosár
+Scenario11 a kosár tartalmának ellenőrzése
+Rule: a kosárhoz lehessen hozzáadni és eltávolítani terméket, valamint a teljes kosarat kiüríteni
 Given megjelenik a /products/2004120032275 oldal
 When megnyomom a View full basket gombot
 Then megnyílik a /trolley oldal
+Example: tudok hozzáadni és törölni a kosárból, az egész kosarat is kiüríthetem egy gommbal
 
-Scenario termék eltávolítása a kosárból
+@ kosárból eltávolítás
+Scenario12: termék eltávolítása a kosárból
+Rule: "-" esetén 1-el vagy X kattintására az összes azonos termék legyen eltávolítva a kosárból
 Given megjelenik a /trolley oldal
 When megnyomom a - gombot a Kata Punch Flavoured Cake terméken
 Then a termék eltűnik a kosárból
@@ -155,9 +198,15 @@ Then megjelnik a /trolley?currentModal=emptyTrolley felugróablak
 When megnyomom az Empty gombot
 Then minden termék eltűnik a kosárból
 And megjelenika Your trolleyis empty felirat
+Example: a gombnyomásnak megfelelően eltávolíthatóak a termékek
 
-Scenario: kijelentkezés
+Feature: kiléptetés gombnyomásra
+
+@ kijelentkezés
+Scenario13: kijelentkezés
+Rule: a bejelentkezett felhasználó tudjon kijelentkezni a Sign out gomb kattintásával
 Given megjelenik a /trolley oldal
 When megnyomom a Sign out gombot
 Then megjelenik a  /groceries/en-GB/
 And megjelnik a sign in gomb a menüszalagon
+Example: a Sign out gomb megnyomására a felhasználó kijelentkezik
