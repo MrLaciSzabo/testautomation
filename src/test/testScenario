@@ -1,0 +1,163 @@
+Feature: oldal bejárása
+
+# előfeltétel chrome.exe projekthez adása
+@ oldal megnyitása
+Scenario: a Tesco weboldalának megnyitása
+Given megnyitom a Chrome böngészőt
+When kattintom a chrome ikont
+Then a Chrome megnyílik
+Given megnyitom a weboldalt
+When a https://bevasarlas.tesco.hu/groceries/en-GB/ linket beillesztem
+And entert nyomok
+Then a Tesco weboldala megnyílik
+
+# előfeltétel törölt cookiek
+# előfeltétel új session
+@ cookiek elfogadása
+Scenario: a cooie menüszalagján az Accept all cookies gombra kattintok
+Given megjelnik a cookie menüszalagja
+When kattintom az Accept all cookies gombot
+Then a menüszalag eltűnik
+
+# előfeltétel regisztrált felhasználói fiók
+@ belépés
+Scenario: a menüszalagon a Sign in gombra kattintok és belépek a regisztrált felhasználóval
+Given megjelenik a menüszalag
+When a Sign in gombra kattintok
+Then megjelenik a https://bevasarlas.tesco.hu/groceries/en-GB/login?from=https%3A%2F%2Fbevasarlas.tesco.hu%2Fgroceries%2Fen-GB%2F  oldal
+When kitöltöm az Email address mezőt helyes adattal
+And kitöltöm az Email Password mezőt helyes adattal
+And megnyomom a Sign in nyomógombot
+Then megjelenik a https://bevasarlas.tesco.hu/groceries/en-GB/ oldal
+
+# tesztstratégia bal fent kezdve jobbra majd lefelé haladva
+Scenario: a menüszalagon minden link és gomb megnyomása kivéve a Sign out gomb
+Given megjelenik a /groceries oldal
+When megnyomom a Hello Laci gombot
+Then megjelenik a /groceries oldal
+When megnyomom a My orders gombot
+Then megjelenik a /orders oldal
+When megnyomom a My account gombot
+Then megjelenik a /account oldal
+When megnyomom a Magyar gombot
+Then megjelenik a hu-HU/account oldal
+When megnyomom a English gombot
+Then megjelenik a /en-GB/account oldal
+When megnyomom a Help gombot
+Then új ablakban megjelenik a /segitseg/en/ oldal
+When megnyomom a lapon a bezár gombot
+Then a segitseg lap bezáródik
+When /groceries/en-GB/account
+Then megjelenik a /en-GB/account oldal
+When megnyomom a Feedback gombot
+Then új ablakban megnyílik a https://secure.opinionlab.com/ccc01/comment_card_d.asp oldal
+When megnyomom a beár gombot
+Then a comment card oldal bezáródik
+
+Scenario: Groceries oldal bejárása
+Given megjelenik a /groceries oldal
+When megnyomom a Groceries gombot
+Then megjelenik a  /groceries/en-GB/favorites oldal
+When megnyomom a Harry Potter linket
+Then megjelennek a Harry Potter termékek
+When megnyomom a Christmas Preparation linket
+Then megjelennek az All Christmas Preparation termékek
+When megnyomom a Donation Coupon linket
+Then megjelennek az All Donation Coupon termékek
+When megnyomom a Fruit & Vegetables linket
+Then megjelennek az All Fruit & Vegetables termékek
+When megnyomom a Diary, Eggs linket
+Then megjelennek az All Diary, Eggs termékek
+When megnyomom a Bakery linket
+Then megjelennek az All Bakery termékek
+When megnyomom a Meat, Fish & Delicatessen linket
+Then megjelennek az All Meat, Fish & Delicatessen termékek
+When megnyomom a Food Cupboard linket
+Then megjelennek az All Food Cupboard termékek
+When megnyomom a Special & Healthy nutrition linket
+Then megjelennek az All Special & Healthy nutrition termékek
+When megnyomom a Frozen Food linket
+Then megjelennek az All Frozen Food termékek
+When megnyomom a Drinks linket
+Then megjelennek az All Drinks termékek
+When megnyomom a Alcohol linket
+Then megjelennek az All Alcohol termékek
+When megnyomom a Household linket
+Then megjelennek az All Household termékek
+When megnyomom a Health&Beauty linket
+Then megjelennek az All Health&Beauty termékek
+When megnyomom a Baby linket
+Then megjelennek az All Baby termékek
+When megnyomom a Pet linket
+Then megjelennek az All Pet termékek
+When megnyomom a Home & Hobby linket
+Then megjelennek az All Home & Hobby termékek
+When megnyomom a Clothing linket
+Then megjelennek az All Clothing termékek
+
+Scenario: My Favourites oldal bejárása
+Given megjelenik a /groceries oldal
+When megnyomom a My Favourites gombot
+Then megjelnik a /favorites oldal
+
+Scenario: Promotions oldal bejárása
+Given megjelenik a /favourites oldal
+When megnyomom a Promotions gombot
+Then megjelenik a /promotions oldal
+
+Scenario: Online Club oldal bejárása
+Given megjelenik a /promotions oldal
+When megnyomom az Online Club gombot
+Then új ablakban megjelenik a /online-club oldal
+When megnyomom a bezár gombot a lapon
+Then megjelenik a /promotions oldal
+
+Scenario: Inspirations oldal bejárása
+Given megjelenik a /promotions oldal
+When megnyomom az Inspirations gombot
+Then megjelenik a /zone/inspiraciok/ oldal
+
+Scenario: a Christmas oldal megnyitása
+Given megjelenik a /zone/inspiraciok/ oldal
+When megnyomom a Christmas gombot
+Then megjelnik a /zone/Karacsony oldal
+
+Scenario: termék kosárba helyezése
+Given megjelnik a /zone/Karacsony oldal
+When megnyomom a Buy Christmas pastry gombot
+Then megjelenik a /buy-lists/G00004119 oldal
+When megnyomom az Add gombot a Tiramisu Slice terméken
+Then a termék hozzáadódik a kosárhoz
+When megnyomom a 2 gombot a terméklista alján
+Then a /buy-lists/G00004119?page=2 oldal jelenik meg
+When megnyomom az Add gombot a Marlenka Honey Cake terméken
+Then a termék hozzáadódik a kosárhoz
+When megnyomom az Add gombot a Benei Vanillin Crescent terméken
+Then a termék hozzáadódik a kosárhoz
+When megnyomom a linket a Kata Punch Flavoured Cake terméken
+Then megnyílik a /products/2004120032275 oldal
+When megnyomom az Add gombot a Kata Punch Flavoured Cake terméken
+Then Then a termék hozzáadódik a kosárhoz
+
+Scenario a kosár tartalmának ellenőrzése
+Given megjelenik a /products/2004120032275 oldal
+When megnyomom a View full basket gombot
+Then megnyílik a /trolley oldal
+
+Scenario termék eltávolítása a kosárból
+Given megjelenik a /trolley oldal
+When megnyomom a - gombot a Kata Punch Flavoured Cake terméken
+Then a termék eltűnik a kosárból
+When megnyomom a bezár gombot a Marlenka Honey Cake terméken
+Then a termék eltűnik a kosárból
+When megnyomom az Empty trolley gombot
+Then megjelnik a /trolley?currentModal=emptyTrolley felugróablak
+When megnyomom az Empty gombot
+Then minden termék eltűnik a kosárból
+And megjelenika Your trolleyis empty felirat
+
+Scenario: kijelentkezés
+Given megjelenik a /trolley oldal
+When megnyomom a Sign out gombot
+Then megjelenik a  /groceries/en-GB/
+And megjelnik a sign in gomb a menüszalagon
