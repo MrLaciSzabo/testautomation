@@ -101,7 +101,7 @@ When megnyomom a My Favourites gombot
 Then megjelnik a /favorites oldal
 
 Scenario: Promotions oldal bejárása
-Given megjelenik a /favourites oldal
+Given megjelenik a /favorites oldal
 When megnyomom a Promotions gombot
 Then megjelenik a /promotions oldal
 
