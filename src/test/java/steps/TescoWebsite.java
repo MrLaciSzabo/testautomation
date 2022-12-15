@@ -38,14 +38,21 @@ public class TescoWebsite {
         System.out.println("setup code");
     }
 
-
+    @Given("Main page openeing")
+    public void openMainPage() {
+        MainPage mainPage = open(MainPageUrl, MainPage.class);
+        String title = TescoTitle;
+        mainPage.validateMainPage(title);
+    }
+    @And("Accepting cookies")
     public void MainPage() {
-        MainPage mainPage = new mainPage();
+        MainPage mainPage = new MainPage();
         mainPage.acceptCookies();
 
 
     }
-        public void user_registers() {
+    @And("Clicking the Reigster button")
+    public void user_registers() {
         RegPage1 regPage1 = open(...);
         RegPage2 regPage2 = regPage1.register();
         regPage2.register();
