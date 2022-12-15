@@ -21,6 +21,7 @@ public class TescoWebsite {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    @Before
     public void MainPage() {
         Given("^homepage is opened$", () -> {
         });
@@ -29,8 +30,7 @@ public class TescoWebsite {
         When("^user registers$", () -> {
         });
     }
-    @Before
-    public void user_registers() {
+        public void user_registers() {
         RegPage1 regPage1 = open(...);
         RegPage2 regPage2 = regPage1.register();
         regPage2.register();
