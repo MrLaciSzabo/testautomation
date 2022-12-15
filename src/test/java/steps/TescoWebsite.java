@@ -21,6 +21,14 @@ public class TescoWebsite {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    public void MainPage() {
+        Given("^homepage is opened$", () -> {
+        });
+        And("^cookies are set$", () -> {
+        });
+        When("^user registers$", () -> {
+        });
+    }
     @Before
     public void user_registers() {
         RegPage1 regPage1 = open(...);
