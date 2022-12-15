@@ -6,9 +6,7 @@ Feature: as a user
   Rule: the user is able to register using valid email format and password combination
 
     Scenario: register using correct email format and password combination
-      Given already opened register page
-      When user fills the Email address field with valid email format
-      And user fills the Password filed with valid password format
-      And user fills the Confirm password filed with valid password format
-      And the user clicks the Next button
+      Given homepage is opened
+      And cookies are set
+      When user registers
 

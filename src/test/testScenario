@@ -7,6 +7,7 @@ Rule: a Tesconak legyen egy elérhető webshopja
 Given megnyitom a Chrome böngészőt
 When kattintom a chrome ikont
 Then a Chrome megnyílik
+
 Given megnyitom a weboldalt
 When a https://bevasarlas.tesco.hu/groceries/en-GB/ linket beillesztem
 And entert nyomok
@@ -46,11 +47,14 @@ Feature: oldal bejárható legyen gombokkal és linkekkel
 @ menüszalag kattintása
 Scenario3: a menüszalagon minden link és gomb megnyomása kivéve a Sign out gomb
 Rule: a honlapon található linkek és gombok a feliratnak megfelelő oldalra irányítson
+
 Given megjelenik a /groceries oldal
 When megnyomom a Hello Laci gombot
 Then megjelenik a /groceries oldal
+
 When megnyomom a My orders gombot
 Then megjelenik a /orders oldal
+
 When megnyomom a My account gombot
 Then megjelenik a /account oldal
 When megnyomom a Magyar gombot

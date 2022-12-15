@@ -12,5 +12,5 @@ Feature: as a user
 
     Scenario: removing items from the basket
       Given language is set to "english"
-      When user preses the Add button on the item page
+      When user removes item from the basket
       Then product is disappeared from the basket
