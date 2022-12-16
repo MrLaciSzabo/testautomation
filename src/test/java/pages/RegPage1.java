@@ -11,26 +11,23 @@ public class RegPage1 {
 
     // UI mezők
     //SelenideElement email = ${};
-    SelenideElement stageNumber = $(".progress-bar__stage-number");
-    SelenideElement regSubBtn = $(byText("Next"));
+    SelenideElement processNumber = $(".progress-bar__stage-number");
+    SelenideElement regBtn = $(byText("Next"));
 
     public RegPage2 setRegProcess1() {
         SelenideElement inputEmail = $("#email");
         SelenideElement inputPass = $("#password");
         SelenideElement inputPassConf = $("#confirm-password");
 
-        assertEquals("1", stageNumber.getText());
+        assertEquals("1", processNumber.getText());
         UUID emailUUID = UUID.randomUUID();
-        String randMail = emailUUID + "@test.it";
+        String randMail = "Test" + emailUUID + "@delete.it";
 
         inputEmail.setValue(randMail);
         inputPass.setValue("Q1w2e3r4");
         inputPassConf.setValue("Q1w2e3r4");
-        regSubBtn.click();
+        regBtn.click();
         return new RegPage2();
-
-
-
 
     }
 
