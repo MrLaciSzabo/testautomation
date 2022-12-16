@@ -44,37 +44,30 @@ public class TescoWebsite {
         driver.quit();
     }
 
-    @Given("Main page open")
+    
+    @Given("open main page")
     public void openMainPage() {
-        MainPage mainPage = open(MAIN_PAGE_URL, MainPage.class);
-        mainPage.validateMainPage(TESCO_TITLE);
+
     }
 
-    @And("language is set to english")
-    public void languageIsSetTo() {
-        MainPage homePage = new MainPage();
-        homePage.isSetToEnglish();
+    @And("accept cookies")
+    public void acceptCookies() {
     }
-    @When("Accepting cookies")
-    public void MainPage() {
-        MainPage mainPage = new MainPage();
-        mainPage.acceptCookies();
+
+    @Given("language is set to hungarian")
+    public void languageIsSetToHungarian() {
     }
-    @Then("The cookie panel closes")
-    public void theCookiePanelCloses() {
-        MainPage homePage = new MainPage();
-        homePage.cookiePanelHidden();
+
+    @When("change the language to english")
+    public void changeTheLanguageToEnglish() {
     }
-    @When("Signing up process")
-    public void user_registers() {
-        MainPage mainPage = new MainPage();
-        RegPage1 regPage1 = mainPage.clickOnRegisterButton();
-        RegPage2 regPage2 = regPage1.setRegProcess1();
-        RegPage3 regPage3 = regPage2.setRegProcess2();
-        ConfirmPage confirmPage = regPage3.setRegProcess3();
+
+    @Then("it shows elements in english language")
+    public void itShowsElementsInEnglishLanguage() {
     }
-    @Then("The user registered")
-    public void userProfileCreated() {
-        assertTrue($("#utility-header-orders-link").isDisplayed());
+
+
+    @And("cookies are set")
+    public void cookiesAreSet() {
     }
 }
