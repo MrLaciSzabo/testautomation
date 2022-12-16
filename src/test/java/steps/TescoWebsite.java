@@ -77,5 +77,4 @@ public class TescoWebsite {
     public void theUserWillHaveAProfile() {
         assertTrue($("#utility-header-orders-link").isDisplayed());
     }
-
 }
