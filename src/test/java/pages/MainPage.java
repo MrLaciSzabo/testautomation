@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.enabled;
@@ -27,11 +28,18 @@ public class MainPage {
         assertEquals(title,Selenide.title());
     }
 
-    public RegPage1 clickOnRegisterButton(String registerText){
+    public RegPage1 clickOnRegisterButton(){
 
         SelenideElement registerButton = null;
         registerButton.click();
         return new RegPage1();
     }
 
+    public void isSetToEnglish() {
+        languageSelector.should(Condition.matchText("Magyar"));
+    }
+
+    public void cookiePanelHidden() {
+        acceptCookiesButton.shouldNot(visible);
+        }
 }
