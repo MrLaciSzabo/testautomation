@@ -23,11 +23,6 @@ public class RegPage3 {
 
         consentCheckBox.click();
         regFinalizeBtn.click();
-        return new ConfirmPage() {
-            @Override
-            public MainPage setRegConfirm() {
-                return null;
-            }
-        };
+        return new ConfirmPage();
     }
 }
