@@ -74,7 +74,7 @@ public class TescoWebsite {
         ConfirmPage confirmPage = regPage3.setRegProcess3();
     }
     @Then("The user registered")
-    public void theUserWillHaveAProfile() {
+    public void userProfileCreated() {
         assertTrue($("#utility-header-orders-link").isDisplayed());
     }
 }
